@@ -22,3 +22,6 @@ Route.get('/', () => {
 Route.post('/register',  'UserController.register')
 Route.get('register/confirm/:token', 'UserController.confirmEmail')
 Route.post('/login', 'UserController.logIn')
+
+//create a book in Library 
+Route.post('/createBook' , 'BookController.createBook')

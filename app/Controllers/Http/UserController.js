@@ -94,7 +94,7 @@ class UserController {
             console.log(error);
             
             message:'There was a problem logging in , Check details and try again'
-            error            
+            error             
         }
         
     }
