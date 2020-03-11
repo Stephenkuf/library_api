@@ -4,7 +4,7 @@
 const Schema = use('Schema')
 
 class UserSchema extends Schema {
-  up () {
+  up() {
     this.create('users', (table) => {
       table.increments()
       table.string('first_name').notNullable()
@@ -15,11 +15,12 @@ class UserSchema extends Schema {
       table.string('confirmation_token')
       table.boolean('is_active').defaultTo(0)
       table.boolean('is_admin').defaultTo(0)
+      table.integer('role_id')
       table.timestamps()
     })
   }
 
-  down () {
+  down() {
     this.drop('users')
   }
 }

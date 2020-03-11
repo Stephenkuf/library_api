@@ -17,11 +17,16 @@
 const Route = use('Route')
 
 Route.get('/', () => {
-  return { greeting: 'Welcome to the Library Applicaiton API' }
+  return {
+    greeting: 'Welcome to the Library Applicaiton API'
+  }
 })
-Route.post('/register',  'UserController.register')
+Route.post('/register', 'UserController.register')
 Route.get('register/confirm/:token', 'UserController.confirmEmail')
 Route.post('/login', 'UserController.logIn')
 
 //create a book in Library 
-Route.post('/createBook' , 'BookController.createBook')
+Route.post('/createBook', 'BookController.createBook')
+// Route.post('/findBook' , 'BookController.findBook')
+Route.post('/updateBook/:id', 'BookController.updateBook')
+Route.post('/deleteBook/:id', 'BookController.deleteBook')
