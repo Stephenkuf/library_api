@@ -32,6 +32,6 @@ Route.post('/updateBook/:id', 'BookController.updateBook')
 Route.post('/deleteBook/:id', 'BookController.deleteBook')
 
 Route.group(() => {
-  Route.get('/titles', 'GetBookController.getTitle')
-  Route.get('titles/:id', 'GetBookController.getSingleTitle')
+  Route.get('/titles', 'GetbookController.getTitle')
+  // Route.get('titles/:id', 'GetbookController.getSingleTitle')
 }).prefix('books')
