@@ -33,5 +33,11 @@ Route.post('/deleteBook/:id', 'BookController.deleteBook')
 
 Route.group(() => {
   Route.get('/titles', 'GetbookController.getTitle')
-  // Route.get('titles/:id', 'GetbookController.getSingleTitle')
+  Route.get('titles/:id', 'GetbookController.getSingleTitle')
+
+  Route.get('/authors', 'GetbookController.getAuthors')
+  Route.get('author/:id', 'GetbookController.getSingleAuthor')
+
+  Route.get('/categories', 'GetbookController.getCategories')
+  Route.get('categories/:id', 'GetbookController.getSingleCategory')
 }).prefix('books')
