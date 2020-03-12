@@ -19,7 +19,7 @@ class UserController {
         username,
         email,
         password,
-        is_admin
+        // is_admin
       } = request.post()
 
       const user = await User.create({
@@ -28,8 +28,8 @@ class UserController {
         username,
         email,
         password,
-        is_admin,
-        role_id,
+        // is_admin,
+        // role_id,
         confirmation_token: randomString({
           length: 40
         })
@@ -53,6 +53,8 @@ class UserController {
         message: "There was an error creating the user ",
         error
       })
+      console.log(error);
+
     }
   }
   async confirmEmail({

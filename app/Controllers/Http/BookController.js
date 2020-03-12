@@ -6,7 +6,11 @@ const User = use("App/Models/User");
 const Book = use("App/Models/Book");
 
 class BookController {
-  async createBook({ auth, request, response }) {
+  async createBook({
+    auth,
+    request,
+    response
+  }) {
     try {
       // get current user (admin)
       // const user  = auth.current.user
@@ -21,47 +25,35 @@ class BookController {
 
       console.log(request.all());
 
-      const title = await Title.findOrCreate(
-        {
-          title_name
-        },
-        {
-          title_name
-        }
-      );
-      const author = await Author.findOrCreate(
-        {
-          author_name
-        },
-        {
-          author_name
-        }
-      );
-      const category = await Category.findOrCreate(
-        {
-          category_name
-        },
-        {
-          category_name
-        }
-      );
+      const title = await Title.findOrCreate({
+        title_name
+      }, {
+        title_name
+      });
+      const author = await Author.findOrCreate({
+        author_name
+      }, {
+        author_name
+      });
+      const category = await Category.findOrCreate({
+        category_name
+      }, {
+        category_name
+      });
 
       // console.log(' >> ,', title.id)
 
-      const book = await Book.findOrCreate(
-        {
-          title_id: title.id,
-          author_id: author.id,
-          category_id: category.id,
-          total_copies: no_of_copies
-        },
-        {
-          title_id: title.id,
-          author_id: author.id,
-          category_id: category.id,
-          total_copies: no_of_copies
-        }
-      );
+      const book = await Book.findOrCreate({
+        title_id: title.id,
+        author_id: author.id,
+        category_id: category.id,
+        total_copies: no_of_copies
+      }, {
+        title_id: title.id,
+        author_id: author.id,
+        category_id: category.id,
+        total_copies: no_of_copies
+      });
 
       response.status(200).json({
         message: "A Book has been created",
@@ -72,7 +64,14 @@ class BookController {
     }
   }
 
-  async updateBook({ auth, response, request, params: { id } }) {
+  async updateBook({
+    auth,
+    response,
+    request,
+    params: {
+      id
+    }
+  }) {
     try {
       const {
         title_name,
@@ -112,7 +111,13 @@ class BookController {
     }
   }
 
-  async deleteBook({ auth, response, params: { id } }) {
+  async deleteBook({
+    auth,
+    response,
+    params: {
+      id
+    }
+  }) {
     try {
       const book = await Book.findBy("id", id);
 
