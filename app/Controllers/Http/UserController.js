@@ -3,6 +3,7 @@ const User = use('App/Models/User')
 const Mail = use('Mail')
 const randomString = require('random-string')
 const Hash = use('Hash')
+const Role = use('App/Models/User')
 
 
 
@@ -19,8 +20,22 @@ class UserController {
         username,
         email,
         password,
-        // is_admin
+        is_admin
       } = request.post()
+
+      // is_admin,
+      // role_id,
+      // check if the user is a staff or student and insert value into the roles table 
+
+
+      if (is_admin === true) {
+        var role_id = 2
+      }
+      if (is_admin === false) {
+        var role_id = 3
+      } else {
+        var role_id = 1
+      }
 
       const user = await User.create({
         first_name,
@@ -28,8 +43,7 @@ class UserController {
         username,
         email,
         password,
-        // is_admin,
-        // role_id,
+        role_id,
         confirmation_token: randomString({
           length: 40
         })

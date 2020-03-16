@@ -21,15 +21,26 @@ Route.get('/', () => {
     greeting: 'Welcome to the Library Applicaiton API'
   }
 })
-Route.post('/register', 'UserController.register')
-Route.get('register/confirm/:token', 'UserController.confirmEmail')
-Route.post('/login', 'UserController.logIn')
 
-//create a book in Library 
-Route.post('/createBook', 'BookController.createBook')
-// Route.post('/findBook' , 'BookController.findBook')
-Route.post('/updateBook/:id', 'BookController.updateBook')
-Route.post('/deleteBook/:id', 'BookController.deleteBook')
+// general routes accesible to every user  
+
+Route.group(() => {
+  Route.post('/register', 'UserController.register')
+  Route.get('register/confirm/:token', 'UserController.confirmEmail')
+  Route.post('/login', 'UserController.logIn')
+})
+
+
+//Crud operations in Library , route only avalaible to admin users 
+Route.group(() => {
+  Route.post('/createBook', 'BookController.createBook')
+  Route.post('/updateBook/:id', 'BookController.updateBook')
+  Route.post('/deleteBook/:id', 'BookController.deleteBook')
+}).middleware(["auth", "admin"])
+
+
+
+// Route accesible to both admins amd  students 
 
 Route.group(() => {
   Route.get('/titles', 'GetbookController.getTitle')
@@ -39,5 +50,7 @@ Route.group(() => {
   Route.get('author/:id', 'GetbookController.getSingleAuthor')
 
   Route.get('/categories', 'GetbookController.getCategories')
-  Route.get('categories/:id', 'GetbookController.getSingleCategory')
-}).prefix('books')
+  Route.get('/categories/:id', 'GetbookController.getSingleCategory')
+
+  Route.post('/borrow/:id', 'BorrowController.borrow')
+}).prefix('books').middleware('auth')
