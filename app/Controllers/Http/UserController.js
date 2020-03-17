@@ -33,9 +33,10 @@ class UserController {
       }
       if (is_admin === false) {
         var role_id = 3
-      } else {
-        var role_id = 1
       }
+      //  else {
+      //   var role_id = 1
+      // }
 
       const user = await User.create({
         first_name,

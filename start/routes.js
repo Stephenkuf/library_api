@@ -52,5 +52,7 @@ Route.group(() => {
   Route.get('/categories', 'GetbookController.getCategories')
   Route.get('/categories/:id', 'GetbookController.getSingleCategory')
 
-  Route.post('/borrow/:id', 'BorrowController.borrow')
+  Route.post('borrow/:id', 'BorrowController.borrow')
+  Route.post('/borrowed', 'BorrowController.borrowed')
+
 }).prefix('books').middleware('auth')
